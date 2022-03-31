@@ -1,14 +1,15 @@
 const Citas = require("./cita_model.js");
-const Paciente = require("../paciente/paciente_model.js");
+const Mascota = require("../mascota/mascota_model.js")
+const Relaciones = require("../config/relaciones.js");
 
 const { Sequelize, DataTypes } = require("sequelize");
 
 module.exports.listaCita = async (req, res) => {
   try {
     const lista = await Citas.findAll({
-      include: [{ model: Paciente }],
+      include: [{ model: Mascota }],
       where: {
-        idPaciente: req.query.idPaciente,
+        idMascota: req.query.idMascota,
       },
     });
     res.json(lista);
@@ -22,7 +23,7 @@ module.exports.filtrarCita = async (req, res) => {
     const lista = await Citas.findAll({
       where: {
         [Sequelize.Op.and]: {
-          idPaciente: req.query.idPaciente,
+          idMascota: req.query.idMascota,
           fechaDeVisita: { [Sequelize.Op.gte]: new Date() },
         },
       },
@@ -37,9 +38,9 @@ module.exports.filtrarCita = async (req, res) => {
 module.exports.crearCita = async (req, res) => {
   try {
     const nuevaCita = {
-      tratamiento: req.body.tratamiento,
+      descripcion: req.body.descripcion,
       fechaDeVisita: req.body.fechaDeVisita,
-      idPaciente: req.body.idPaciente,
+      idMascota: req.body.idMascota,
     };
 
     const citaCreada = await Citas.create(nuevaCita);
