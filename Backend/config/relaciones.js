@@ -1,10 +1,11 @@
-const Usuarios = require("../usuario/usuario_model.js");
-const Pacientes = require("../paciente/paciente_model.js");
+const Usuario = require("../usuario/usuario_model.js");
 const Citas = require("../cita/cita_model.js");
+const Mascota = require("../mascota/mascota_model.js");
 
-Pacientes.belongsTo(Usuarios, { foreignKey: "idUsuario" });
+Usuario.hasMany(Mascota, { foreignKey: "idUsuario" });
+Mascota.belongsTo(Usuario, { foreignKey: "idUsuario" });
 
-Pacientes.hasMany(Citas, { foreignKey: "idPaciente" });
-Citas.belongsTo(Pacientes, { foreignKey: "idPaciente" });
+Mascota.hasMany(Citas, { foreignKey: "idMascota" });
+Citas.belongsTo(Mascota, { foreignKey: "idMascota" });
 
-module.exports.Relaciones = { Usuarios, Pacientes, Citas };
+module.exports.Relaciones = { Usuario, Mascota, Citas };
