@@ -63,7 +63,7 @@ module.exports.login = async (req, res) => {
         usuarioEncontrado.login = true;
         usuarioEncontrado.save();
         console.log(usuarioEncontrado);
-        res.json("Tu token de usuario es " + token);
+        res.json({token: token,id: usuarioEncontrado.id});
       } else {
         res.status(401).send("Usuario o contraseña incorrecto en el hash");
       }
