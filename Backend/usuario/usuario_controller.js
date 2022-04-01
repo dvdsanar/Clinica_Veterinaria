@@ -4,8 +4,7 @@ const Mascota = require("../mascota/mascota_model.js");
 const Relaciones = require("../config/relaciones.js");
 // const hashear = require("../config/middlewares.js");
 // const comprobarHash = require("../config/middlewares.js");
-const middlewares = require("../config/middlewares.js")
-
+const middlewares = require("../config/middlewares.js");
 
 //GET DE Usuario //buscar por nombre del usuario
 module.exports.verUsuario = async (req, res) => {
@@ -17,7 +16,7 @@ module.exports.verUsuario = async (req, res) => {
       },
     });
     if (usuarioEncontrado) {
-      console.log(usuarioEncontrado)
+      console.log(usuarioEncontrado);
       res.json(usuarioEncontrado);
     } else {
       res.status(404).json("El usuario seleccionado no existe");
@@ -67,9 +66,11 @@ module.exports.login = async (req, res) => {
         res.json("Tu token de usuario es " + token);
       } else {
         res.status(401).send("Usuario o contraseña incorrecto en el hash");
-        }
+      }
     } else {
-      res.status(401).send("Usuario o contraseña incorrecto al encontrar al usuario");
+      res
+        .status(401)
+        .send("Usuario o contraseña incorrecto al encontrar al usuario");
     }
   } catch (error) {
     res.json(error);
