@@ -12,9 +12,9 @@ module.exports.infoMascota = async (req, res) => {
       },
     });
     if (lista) {
-      res.json("El Usuario no existe");
-    } else {
       res.json(lista);
+    } else {
+      res.json("El Usuario no existe");
     }
   } catch (error) {
     console.log("error por catch" + error);
