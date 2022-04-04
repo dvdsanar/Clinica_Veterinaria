@@ -3,13 +3,14 @@ const Mascota = require("../mascota/mascota_model.js")
 const Relaciones = require("../config/relaciones.js");
 
 const { Sequelize, DataTypes } = require("sequelize");
+const Usuario = require("../usuario/usuario_model.js");
 
 module.exports.listaCita = async (req, res) => {
   try {
     const lista = await Citas.findAll({
-      include: [{ model: Mascota }],
+      include: [{ model: Usuario }],
       where: {
-        idMascota: req.query.idMascota,
+        idUsuario: req.query.idUsuario,
       },
     });
     res.json(lista);
