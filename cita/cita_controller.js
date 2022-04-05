@@ -4,9 +4,6 @@ const Relaciones = require("../config/relaciones.js");
 
 const { Sequelize, DataTypes } = require("sequelize");
 const Usuario = require("../usuario/usuario_model.js");
-const {
-  captureRejectionSymbol,
-} = require("mysql2/typings/mysql/lib/Connection");
 
 module.exports.listaCita = async (req, res) => {
   try {
