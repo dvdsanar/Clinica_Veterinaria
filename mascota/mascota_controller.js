@@ -21,10 +21,11 @@ module.exports.infoMascota = async (req, res) => {
     res.json(error);
   }
 };
-module.exports.MascotasAll = async (req,res) => {
+module.exports.mascotasAll = async (req,res) => {
   try{
     const lista = await Mascota.findAll({
-      include: [{model: Usuario}]
+      include: [{model: Usuario}],
+      where: {}
     })
     res.json(lista)
   }catch(error){

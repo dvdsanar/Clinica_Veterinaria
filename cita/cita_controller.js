@@ -23,7 +23,8 @@ module.exports.listaCita = async (req, res) => {
 module.exports.citas = async (req,res) => {
   try{
     const lista = await Citas.findAll({
-      include: [{model: Mascota}]
+      include: [{model: Mascota}],
+      where: {}
     })
     res.json(lista)
   }catch(error){
