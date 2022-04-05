@@ -5,6 +5,7 @@ const verificacion = require("../config/middlewares.js");
 
 router.get("/lista",  controller.listaCita);
 router.get("/",  controller.filtrarCita);
+router.get("/todas", controller.citas)
 router.post("/",  controller.crearCita);
 router.delete("/",  controller.borrarCita);
 router.patch("/:id",  controller.modificarCita);

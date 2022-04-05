@@ -4,13 +4,14 @@ const Relaciones = require("../config/relaciones.js");
 
 const { Sequelize, DataTypes } = require("sequelize");
 const Usuario = require("../usuario/usuario_model.js");
+const { captureRejectionSymbol } = require("mysql2/typings/mysql/lib/Connection");
 
 module.exports.listaCita = async (req, res) => {
   try {
     const lista = await Citas.findAll({
-      include: [{ model: Usuario }],
+      include: [{ model: Mascota }],
       where: {
-        idUsuario: req.query.idUsuario,
+        idMascota: req.query.idMascota,
       },
     });
     res.json(lista);
@@ -18,6 +19,18 @@ module.exports.listaCita = async (req, res) => {
     res.json(error + "error");
   }
 };
+
+module.exports.citas = async (req,res) => {
+  try{
+    const lista = await Citas.findAll({
+      include: [{model: Mascota}]
+    })
+    res.json(lista)
+  }catch(error){
+    console.log('Error por catch en el getAll de citas')
+    res.json(error)
+  }
+}
 //GET de las citas futuras pendientes
 module.exports.filtrarCita = async (req, res) => {
   try {
