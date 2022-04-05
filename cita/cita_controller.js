@@ -1,10 +1,12 @@
 const Citas = require("./cita_model.js");
-const Mascota = require("../mascota/mascota_model.js")
+const Mascota = require("../mascota/mascota_model.js");
 const Relaciones = require("../config/relaciones.js");
 
 const { Sequelize, DataTypes } = require("sequelize");
 const Usuario = require("../usuario/usuario_model.js");
-const { captureRejectionSymbol } = require("mysql2/typings/mysql/lib/Connection");
+const {
+  captureRejectionSymbol,
+} = require("mysql2/typings/mysql/lib/Connection");
 
 module.exports.listaCita = async (req, res) => {
   try {
@@ -20,18 +22,18 @@ module.exports.listaCita = async (req, res) => {
   }
 };
 
-module.exports.citas = async (req,res) => {
-  try{
+module.exports.citas = async (req, res) => {
+  try {
     const lista = await Citas.findAll({
-      include: [{model: Mascota}],
-      where: {}
-    })
-    res.json(lista)
-  }catch(error){
-    console.log('Error por catch en el getAll de citas')
-    res.json(error)
+      where: {},
+      include: [{ model: Mascota }],
+    });
+    res.json(lista);
+  } catch (error) {
+    console.log("Error por catch en el getAll de citas");
+    res.json(error);
   }
-}
+};
 //GET de las citas futuras pendientes
 module.exports.filtrarCita = async (req, res) => {
   try {

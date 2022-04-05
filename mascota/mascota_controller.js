@@ -21,18 +21,18 @@ module.exports.infoMascota = async (req, res) => {
     res.json(error);
   }
 };
-module.exports.mascotasAll = async (req,res) => {
-  try{
+module.exports.mascotasAll = async (req, res) => {
+  try {
     const lista = await Mascota.findAll({
-      include: [{model: Usuario}],
-      where: {}
-    })
-    res.json(lista)
-  }catch(error){
-    console.log('Error por catch en el getAll de mascotas')
-    res.json(error)
+      where: {},
+      include: [{ model: Usuario }],
+    });
+    res.json(lista);
+  } catch (error) {
+    console.log("Error por catch en el getAll de mascotas");
+    res.json(error);
   }
-}
+};
 
 // Get mascotas por el iD de Mascota
 module.exports.mascotaPorId = async (req, res) => {
